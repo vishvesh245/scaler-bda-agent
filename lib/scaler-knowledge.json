@@ -1,0 +1,210 @@
+{
+  "last_updated": "2026-04-24",
+  "source": "scraped from scaler.com via Firecrawl",
+  "programs": [
+    {
+      "name": "Scaler Academy (Software Engineering)",
+      "url": "https://www.scaler.com/courses/software-development/",
+      "duration": "9.5–11.5 months depending on track (Beginner/Intermediate/Advanced)",
+      "price": "~₹3.5L (EMI options available from ~₹9,791/month; 14-day refund policy)",
+      "target_yoe": "0–7 years",
+      "keywords": ["software engineering", "backend", "full stack", "system design", "DSA", "product company", "service to product", "switch", "SDE", "developer"],
+      "curriculum_modules": [
+        {
+          "name": "Programming Language Fundamentals",
+          "duration": "2 months",
+          "topics": ["Java basics", "Data types", "OOP", "Strings", "Memory management"]
+        },
+        {
+          "name": "Data Structures and Algorithms",
+          "duration": "4–4.5 months",
+          "topics": ["Time/space complexity", "Arrays", "Recursion", "Backtracking", "Sorting", "Binary Search", "Hashing", "Linked Lists", "Trees & BST", "Heaps", "Graphs", "Dynamic Programming", "Greedy"]
+        },
+        {
+          "name": "SQL",
+          "duration": "0.5 months",
+          "topics": ["Relational model", "CRUD", "Joins", "Aggregation", "Transactions", "Indexing"]
+        },
+        {
+          "name": "LLD (Low Level Design)",
+          "duration": "2–3.5 months",
+          "topics": ["OOP principles", "Design patterns", "Machine coding", "Backend LLD case studies", "Frontend LLD case studies"]
+        },
+        {
+          "name": "HLD / System Design",
+          "duration": "1–1.5 months",
+          "topics": ["Consistent Hashing", "Caching", "CAP Theorem", "Distributed Systems & Databases", "SQL and NoSQL", "Scalability", "Zookeeper + Kafka", "Location-Based Services (S3, Quad Trees)", "Microservices", "Real-world case studies"]
+        },
+        {
+          "name": "Gen AI for SWE",
+          "duration": "2 months",
+          "topics": ["Introduction to AI and ML", "Deep Learning basics", "GenAI and LLMs", "Transformer Architecture", "Embeddings and RAG", "LLM Evaluations", "AI Agents", "Building Production-Ready AI Applications"]
+        },
+        {
+          "name": "Specialisations (pick one)",
+          "duration": "1 month",
+          "options": ["Backend Development (Spring Boot, ORM, Deployment, Git)", "Fullstack Development", "Advanced Software & System Design (1.5 months)"]
+        }
+      ],
+      "differentiators": [
+        "Live classes by engineers from Amazon, Google, Meta, Hotstar, Microsoft",
+        "1:1 mentorship from industry veterans (bimonthly personalised sessions)",
+        "Peer group of 2,000+ current students + 1,00,000+ alumni",
+        "Career support: dedicated recruitment team, mock interviews, resume review",
+        "900+ hiring partner companies",
+        "Practical projects alongside theory — not just assignments",
+        "Curriculum updated regularly to reflect current interview standards"
+      ],
+      "salary_outcomes": {
+        "entry_level": "₹5–8 LPA",
+        "mid_level_2_5_yoe": "₹12–18 LPA",
+        "senior_5_plus_yoe": "₹20–40+ LPA",
+        "bangalore_top_talent": "₹15–30 LPA",
+        "typical_hike_after_program": "Median ~110% increase reported by alumni",
+        "notable": "Alumni at Amazon, Google, Microsoft, Flipkart, Media.net, PayTM, ClearTax"
+      },
+      "vs_free_alternatives": {
+        "coursera_andrew_ng": "Andrew Ng covers ML theory well. Scaler differs in: (1) structured DSA + system design track specifically for SDE interviews, (2) live classes with direct Q&A vs recorded video, (3) 1:1 mentorship and accountability, (4) career support + hiring partner network, (5) cohort of serious peers — not self-paced isolation. Coursera won't mock-interview you or intro you to a hiring manager.",
+        "youtube_free_resources": "Free resources require you to curate, sequence, and self-motivate. Scaler provides structured progression, accountability, and the peer pressure of a cohort moving together. The mentorship and placement network are what you cannot get for free."
+      }
+    },
+    {
+      "name": "Scaler Data Science & ML",
+      "url": "https://www.scaler.com/data-science-course/",
+      "duration": "12–15 months",
+      "price": "~₹9,791/month EMI (flexible plans)",
+      "target_yoe": "0–5 years, freshers with no prior coding also accepted",
+      "keywords": ["data science", "machine learning", "ML", "AI", "data analyst", "Python", "deep learning", "NLP", "analytics"],
+      "curriculum_modules": [
+        {
+          "name": "Python Foundations + AI Coding Assistants",
+          "topics": ["Python basics", "Data types", "Functions", "Data structures", "AI-assisted learning workflows"]
+        },
+        {
+          "name": "Generative AI for Data Analytics & Automation",
+          "topics": ["Prompt engineering for SQL and Python", "AI-powered data cleaning", "EDA automation", "Report generation", "Dashboard automation", "AI-assisted analytics pipelines"]
+        },
+        {
+          "name": "SQL + Advanced Analytics",
+          "topics": ["SQL fundamentals", "Advanced querying", "Window functions", "Analytics use cases"]
+        },
+        {
+          "name": "Machine Learning",
+          "topics": ["Supervised learning", "Unsupervised learning", "Model evaluation", "Feature engineering", "Scikit-learn"]
+        },
+        {
+          "name": "Deep Learning & NLP",
+          "topics": ["Neural networks", "CNNs", "RNNs", "Transformers", "NLP pipelines", "Hugging Face"]
+        },
+        {
+          "name": "LLM & GenAI for Data",
+          "topics": ["LLM APIs", "RAG pipelines", "Embeddings", "LLMOps", "AI-integrated data systems"]
+        },
+        {
+          "name": "Real-World Projects (50+)",
+          "topics": ["End-to-end data pipelines", "Deployed AI-integrated systems", "Interview-ready portfolio"]
+        }
+      ],
+      "differentiators": [
+        "AI built into every module — not bolted on after",
+        "Every module uses Generate → Validate → Improve workflow with AI tools",
+        "50+ hands-on projects with real business cases",
+        "Instructors include experts who built Facebook Messenger and Uber products",
+        "1:1 mentorship throughout",
+        "100,000+ alumni network, 900+ hiring partners",
+        "Lifetime access to recorded content + regular curriculum updates"
+      ],
+      "salary_outcomes": {
+        "ml_specialist_premium": "ML specialists earn significantly more than generalists at same experience level",
+        "data_science_job_openings": "Data science & analytics job openings in India projected to massively exceed supply by 2026",
+        "typical_hike": "Median ~110% salary increase after program completion",
+        "notable_alumni_testimonial": "In 2.5 months, went from basics to advanced ML concepts — structured approach + mentors made it possible"
+      },
+      "vs_free_alternatives": {
+        "coursera_andrew_ng": "Andrew Ng's Deep Learning specialisation is excellent theory. Scaler's program adds: applied GenAI/LLM modules (RAG, LLMOps) that Coursera hasn't updated for, 50+ projects vs watching videos, direct mentor access, and a placement network that opens doors Coursera certificates don't."
+      }
+    },
+    {
+      "name": "Scaler DevOps & Cloud Engineering",
+      "url": "https://www.scaler.com/courses/devops-and-cloud-computing/",
+      "duration": "~9 months",
+      "price": "Competitive with SWE program (~₹3.5L range, contact for exact)",
+      "target_yoe": "1–7 years",
+      "keywords": ["devops", "cloud", "AWS", "kubernetes", "docker", "CI/CD", "SRE", "infrastructure", "platform engineering"],
+      "curriculum_modules": [
+        {
+          "name": "Linux & Scripting",
+          "topics": ["Linux fundamentals", "Bash scripting", "Python for DevOps"]
+        },
+        {
+          "name": "Containerisation & Orchestration",
+          "topics": ["Docker", "Kubernetes", "Helm", "Container registries"]
+        },
+        {
+          "name": "CI/CD & Infrastructure as Code",
+          "topics": ["Jenkins", "GitHub Actions", "Terraform", "Ansible"]
+        },
+        {
+          "name": "Cloud (AWS)",
+          "topics": ["EC2", "S3", "RDS", "Lambda", "EKS", "CloudFormation", "IAM", "VPC"]
+        },
+        {
+          "name": "Monitoring & Observability",
+          "topics": ["Prometheus", "Grafana", "ELK stack", "Alerting"]
+        },
+        {
+          "name": "System Design for DevOps",
+          "topics": ["High availability", "Disaster recovery", "Security", "Cost optimisation"]
+        }
+      ],
+      "differentiators": [
+        "Hands-on labs on real cloud environments",
+        "Instructors who have built and managed large-scale production infrastructure",
+        "1:1 mentorship from senior DevOps / SRE engineers",
+        "Career support with placement network"
+      ],
+      "salary_outcomes": {
+        "entry_level": "₹6–10 LPA",
+        "mid_level": "₹14–22 LPA",
+        "senior": "₹25–40+ LPA",
+        "cloud_premium": "AWS-certified engineers command 30-40% premium over non-certified peers"
+      }
+    }
+  ],
+  "general_scaler_facts": {
+    "founded": "2019 by Abhimanyu Saxena and Anshuman Singh (ex-Facebook, ex-Directi)",
+    "total_alumni": "100,000+",
+    "hiring_partners": "900+",
+    "faculty_background": "Engineers from Amazon, Google, Meta, Microsoft, Hotstar, Flipkart",
+    "live_class_format": "3 live classes per week, highly interactive, recorded for replay",
+    "mentorship": "Bimonthly 1:1 sessions with industry veterans; mentors have helped thousands with interview prep and career guidance",
+    "entrance_test": "Scaler requires candidates to clear an entrance test before enrollment. It tests DSA and problem-solving fundamentals. Designed to ensure cohort quality — not to filter out motivated candidates.",
+    "entrance_test_prep": "Scaler provides preparation resources. The test is designed to be passable with focused effort — typically 2-4 weeks of structured prep. It's a signal of commitment, not a gatekeeping mechanism.",
+    "placement_support": [
+      "Dedicated recruitment team that connects learners with hiring partners",
+      "Mock interviews with working professionals at target companies",
+      "Resume review and optimisation",
+      "Alumni referrals and warm intros to hiring managers",
+      "Interview preparation workshops"
+    ],
+    "payment_options": [
+      "No-cost EMI through NBFCs and bank partners",
+      "Income Share Agreement (ISA) option for eligible candidates",
+      "Scholarships available based on merit and financial need",
+      "14-day money-back guarantee",
+      "Can start with as low as ₹9,791/month"
+    ],
+    "refund_policy": "14-day full refund policy",
+    "scaler_vs_college": "College gives you a degree. Scaler gives you interview-ready skills. Most Tier-2/3 college placements are ₹3-4 LPA. Scaler alumni from similar backgrounds regularly land ₹8-15 LPA first roles.",
+    "cohort_quality": "Selective admissions ensure peers are equally serious. Average learner in a Scaler cohort has 2-3 years experience or a strong academic background. Senior cohorts (like those Karthik would join) include engineers from top product companies looking to go deeper on AI/system design."
+  },
+  "common_objections_and_handles": {
+    "price_too_high": "The fee is ~₹3.5L. At 14 LPA today, a 50% hike to 21 LPA adds ₹7L+ per year. The program pays for itself in 6 months of salary delta. EMI makes it cash-flow neutral during the program itself.",
+    "coursera_free": "Free resources don't mock-interview you, don't intro you to hiring managers, and don't hold you accountable. What you're paying for is the structure, the mentor network, and the placement engine — not the content.",
+    "am_i_too_late_for_ai": "The shift to AI engineering is still early. The engineers who upskill in 2025-2026 will define the next 10 years. Waiting makes the gap wider, not smaller.",
+    "will_i_clear_entrance_test": "The entrance test is designed to be passable with 2-4 weeks of focused prep. Scaler provides resources. It filters for commitment, not raw talent.",
+    "job_guarantee": "Scaler doesn't offer a blanket guarantee, but 900+ hiring partners, dedicated placement teams, and alumni referrals create a support system. Alumni from similar profiles (Tier-2/3 colleges, 0 YoE) regularly land ₹8-12 LPA first roles in product companies.",
+    "worth_it_for_experienced": "If you're at 14 LPA in services and want 25-35 LPA at a product company, the math works. The program is worth it if the outcome delta is real — and Scaler alumni data backs that up.",
+    "cohort_level": "Scaler's selective admissions mean your cohort will challenge you. Senior tracks attract engineers from product companies who want to go deeper. You won't be tutoring beginners."
+  }
+}
