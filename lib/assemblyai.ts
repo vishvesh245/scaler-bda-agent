@@ -33,7 +33,7 @@ export async function pollTranscription(
 ): Promise<string> {
   const start = Date.now();
   while (Date.now() - start < timeoutMs) {
-    await new Promise((r) => setTimeout(r, 3000));
+    await new Promise((r) => setTimeout(r, 2000));
     const res = await fetch(`${BASE}/v2/transcript/${id}`, {
       headers: { authorization: process.env.ASSEMBLYAI_API_KEY! },
     });
