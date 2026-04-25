@@ -42,7 +42,7 @@ export function SeniorVariant({ lead: _lead, content }: Props) {
         </View>
         <View style={s.body}>
           <Text style={s.sectionTitle}>What you will actually cover</Text>
-          {(content.curriculumHighlights ?? []).map((c, i) => (
+          {(content.curriculumHighlights ?? []).slice(0, 4).map((c, i) => (
             <View key={i} style={{ flexDirection: "row", marginBottom: 8, alignItems: "flex-start" }}>
               <View style={s.chip}>
                 <Text style={s.chipText}>{i + 1}</Text>
@@ -53,7 +53,15 @@ export function SeniorVariant({ lead: _lead, content }: Props) {
               </View>
             </View>
           ))}
-          <View style={s.divider} />
+        </View>
+        <PDFFooter s={s} />
+      </Page>
+
+      <Page size="A4" style={s.page}>
+        <View style={s.headerSub}>
+          <Text style={s.headerBrandNoMargin}>SCALER · {BADGE}</Text>
+        </View>
+        <View style={s.body}>
           <Text style={s.sectionTitle}>Your questions, answered</Text>
           {(content.addressedConcerns ?? []).map((ac, i) => (
             <View key={i} style={s.qaRow}>
