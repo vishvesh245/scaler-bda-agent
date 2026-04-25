@@ -1,62 +1,29 @@
 # Scaler BDA Sales Agent
 
+**Live:** https://scaler-bda-agent.vercel.app
+
+---
+
 ## What I built
 
-A Next.js app that supercharges two drop-off points in Scaler's sales funnel. Before a call, the BDA gets a personalised WhatsApp brief — who the lead is, two or three angles that'll resonate, likely objections with one-line handles, and a suggested opening hook — so the first 30 seconds aren't generic. After the call, the BDA pastes a transcript (or uploads a recording), the agent extracts the lead's open questions, and generates a 3-page PDF personalised to that specific person's situation, goals, and doubts — grounded in real Scaler curriculum data scraped from scaler.com. The BDA reviews it, approves or edits the covering message, and the PDF lands on the lead's WhatsApp. Three PDF variants (Fresher / Switcher / Senior) with different visual design, framing, and content so Meera's PDF doesn't read like Rohan's.
+A two-flow tool for Scaler BDAs. Before a call, the BDA gets a WhatsApp brief with a persona read on the lead, two or three angles likely to land, objections to expect with one-line handles, and a suggested opening — all pulled from the lead's profile and intent. After the call, they paste the transcript or upload the recording, the agent extracts what the lead didn't get answered, and generates a 3-page PDF addressed to that specific person's situation. The BDA reviews it, edits the covering message if needed, approves, and it goes to the lead's WhatsApp. Three PDF variants with different visual design and framing — fresher, switcher, senior — so the content matches where the lead actually is. Scaler curriculum and outcomes are grounded in data scraped from scaler.com, not fabricated.
 
 ---
 
 ## One failure I found
 
-When a fresher (0 YoE) mentions "product company" in their intent, the variant selector classified them as Switcher instead of Fresher — because keyword matching ran before the YoE check. Meera was getting the career-transition framing designed for 4-year service engineers, not the placement-focused fresher PDF. Fixed by checking `yoe === 0` first.
+Meera (0 YoE, final-year student) was getting the switcher PDF — built for mid-career service engineers — because "product company" in her intent triggered the keyword match before the YoE check. She'd have received transition framing that had nothing to do with her situation. Fixed, but I only caught it running QA after the fact, not during design.
 
 ---
 
 ## Scale plan
 
-At 100k leads/month, two things break. First, Claude latency — each PDF flow makes two sequential Anthropic calls (~15s total). At scale that's fine per-lead but the PDF queue needs to move async: accept the request, generate in background, push to WhatsApp when ready rather than holding the HTTP connection. Second, the Scaler knowledge base is a static JSON file scraped once. At volume, curriculum drift (outdated module names, wrong salary figures) becomes a trust problem. The fix is a lightweight weekly scrape job that diffs against the committed version and flags changes for review — not a live RAG pipeline, just fresh ground truth.
+The two real constraints at 100k leads/month: first, PDF generation makes two sequential Claude calls and takes ~15 seconds per lead — that's fine synchronously at low volume but needs to go async at scale (accept request, generate in background, push to WhatsApp on completion). Second, the knowledge base is a static JSON scraped once from scaler.com. At volume, stale curriculum data — wrong module names, outdated salary figures — becomes a trust problem with leads. Fix is a weekly diff job that flags changes for manual review, not a full RAG pipeline.
 
 ---
 
-## Demo setup
+## Setup
 
-Both numbers (BDA + lead) must opt into the Twilio WhatsApp Sandbox before receiving messages.
+Both numbers (BDA + lead) need to opt into the Twilio sandbox before any WhatsApp message lands. Send `join plenty-grand` from each number to **+1 415 523 8886** on WhatsApp.
 
-Send this from each number to **+1 415 523 8886** on WhatsApp:
-```
-join plenty-grand
-```
-
-Then open **https://scaler-bda-agent.vercel.app/dashboard**, enter your WhatsApp number in the header, select or fill a lead profile, and run either flow.
-
----
-
-## How to test with your own input
-
-The app accepts any lead profile + transcript or audio file — nothing is hardcoded. Fill in the form fields with your own lead details, paste your transcript (or upload a recording), and click Generate PDF.
-
----
-
-## Local development
-
-```bash
-npm install
-cp .env.example .env.local
-# fill in API keys
-npm run dev
-```
-
-| Variable | Source |
-|---|---|
-| `ANTHROPIC_API_KEY` | console.anthropic.com |
-| `ASSEMBLYAI_API_KEY` | assemblyai.com/dashboard |
-| `TWILIO_ACCOUNT_SID` | console.twilio.com |
-| `TWILIO_AUTH_TOKEN` | console.twilio.com |
-| `TWILIO_WHATSAPP_FROM` | `+14155238886` |
-| `BLOB_READ_WRITE_TOKEN` | Vercel dashboard → Storage → Blob |
-
----
-
-## Stack
-
-Next.js 16 · Claude Sonnet 4.6 · AssemblyAI · Twilio WhatsApp Sandbox · @react-pdf/renderer · Vercel Blob
+Then open the app, enter your number in the header, pick a lead, and run either flow. The app accepts any custom lead profile — nothing is hardcoded to the three sample personas.
