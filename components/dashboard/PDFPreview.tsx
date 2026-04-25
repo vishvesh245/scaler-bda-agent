@@ -53,19 +53,41 @@ export function PDFPreview({ blobUrl, pdfContent, lead, variant, onSent }: Props
   return (
     <div className="space-y-4">
       {/* PDF metadata */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 flex-wrap">
         <span className={`text-xs font-medium px-2 py-1 rounded ${VARIANT_COLORS[variant]}`}>
           {VARIANT_LABELS[variant]}
         </span>
         <span className="text-xs text-gray-500">3 pages · personalised for {lead.name}</span>
-        <a
-          href={blobUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-[#e94560] font-medium hover:underline ml-auto"
+        <div className="ml-auto flex items-center gap-3">
+          <a
+            href={blobUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-[#e94560] font-medium hover:underline"
+          >
+            Open PDF ↗
+          </a>
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`Hi ${lead.name}, here's your personalised Scaler overview: ${blobUrl}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs bg-[#25D366] text-white font-medium px-2 py-1 rounded hover:bg-[#1ebe5d] transition"
+          >
+            Share via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      {/* Blob URL for manual copy if WhatsApp delivery fails */}
+      <div className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 flex items-center gap-2">
+        <span className="text-xs text-gray-400 shrink-0">PDF URL:</span>
+        <span className="text-xs text-gray-600 font-mono truncate flex-1">{blobUrl}</span>
+        <button
+          onClick={() => navigator.clipboard.writeText(blobUrl)}
+          className="text-xs text-[#e94560] font-medium hover:underline shrink-0"
         >
-          Open PDF ↗
-        </a>
+          Copy
+        </button>
       </div>
 
       {/* PDF preview iframe */}
