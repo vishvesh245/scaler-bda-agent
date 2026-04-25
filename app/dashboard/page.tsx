@@ -42,14 +42,14 @@ const SAMPLE_PERSONAS: LeadProfile[] = [
 ];
 
 export default function DashboardPage() {
-  const [lead, setLead] = useState<LeadProfile>(EMPTY_LEAD);
+  const [lead, setLead] = useState<LeadProfile>(SAMPLE_PERSONAS[0]);
   const [activeTab, setActiveTab] = useState<"nudge" | "pdf">("nudge");
   const [bdaNumber, setBdaNumber] = useState("");
   const [bdaSaved, setBdaSaved] = useState(false);
   const bdaSavedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Persona dropdown state
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(SAMPLE_PERSONAS[0].name);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
