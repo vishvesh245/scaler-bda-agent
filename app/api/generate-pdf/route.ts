@@ -70,8 +70,7 @@ export async function POST(req: NextRequest) {
     return Response.json({ blobUrl, pdfContent, variant, openQuestions });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    const stack = err instanceof Error ? err.stack : "";
-    console.error("generate-pdf error:", stack || message);
-    return Response.json({ error: message, stack }, { status: 500 });
+    console.error("generate-pdf error:", err instanceof Error ? err.stack : message);
+    return Response.json({ error: message }, { status: 500 });
   }
 }

@@ -1,122 +1,62 @@
 # Scaler BDA Sales Agent
 
-An AI-powered sales assistant that supercharges two moments in Scaler's phone-call sales funnel:
+## What I built
 
-1. **Pre-call nudge** — BDA gets a personalised WhatsApp brief 10 minutes before a call (lead context, resonance angles, objection handles, opening hook)
-2. **Post-call PDF** — After the call, upload the transcript → Claude generates a 3-page personalised PDF → BDA approves → PDF delivered to lead's WhatsApp
-3. **In-call assist** *(bonus)* — Live Q&A tool BDA uses during the call at `/in-call`
-
-**Live app:** https://scaler-bda-agent.vercel.app
+A Next.js app that supercharges two drop-off points in Scaler's sales funnel. Before a call, the BDA gets a personalised WhatsApp brief — who the lead is, two or three angles that'll resonate, likely objections with one-line handles, and a suggested opening hook — so the first 30 seconds aren't generic. After the call, the BDA pastes a transcript (or uploads a recording), the agent extracts the lead's open questions, and generates a 3-page PDF personalised to that specific person's situation, goals, and doubts — grounded in real Scaler curriculum data scraped from scaler.com. The BDA reviews it, approves or edits the covering message, and the PDF lands on the lead's WhatsApp. Three PDF variants (Fresher / Switcher / Senior) with different visual design, framing, and content so Meera's PDF doesn't read like Rohan's.
 
 ---
 
-## Demo setup (required before testing)
+## One failure I found
 
-### 1. Twilio WhatsApp Sandbox opt-in
+When a fresher (0 YoE) mentions "product company" in their intent, the variant selector classified them as Switcher instead of Fresher — because keyword matching ran before the YoE check. Meera was getting the career-transition framing designed for 4-year service engineers, not the placement-focused fresher PDF. Fixed by checking `yoe === 0` first.
 
-Both your number (BDA) and the lead's number must opt in to the Twilio sandbox before receiving any WhatsApp messages.
+---
 
-Send this WhatsApp message from each number to **+1 415 523 8886**:
+## Scale plan
 
+At 100k leads/month, two things break. First, Claude latency — each PDF flow makes two sequential Anthropic calls (~15s total). At scale that's fine per-lead but the PDF queue needs to move async: accept the request, generate in background, push to WhatsApp when ready rather than holding the HTTP connection. Second, the Scaler knowledge base is a static JSON file scraped once. At volume, curriculum drift (outdated module names, wrong salary figures) becomes a trust problem. The fix is a lightweight weekly scrape job that diffs against the committed version and flags changes for review — not a live RAG pipeline, just fresh ground truth.
+
+---
+
+## Demo setup
+
+Both numbers (BDA + lead) must opt into the Twilio WhatsApp Sandbox before receiving messages.
+
+Send this from each number to **+1 415 523 8886** on WhatsApp:
 ```
 join plenty-grand
 ```
 
-You should receive a confirmation message. Once done, the app can send WhatsApp messages to those numbers.
-
-### 2. Use the app
-
-1. Open https://scaler-bda-agent.vercel.app/dashboard
-2. Enter your WhatsApp number (E.164 format, e.g. `+919876543210`) in the **Your WA** field in the header
-3. Select a persona from the dropdown (Rohan Sharma, Karthik Iyer, Meera Patel) or fill a custom lead
-4. Fill in the lead's WhatsApp number in the lead profile form
-
-**Pre-call nudge tab:**
-- Click **Generate nudge** → personalised WhatsApp brief appears
-- Click **Send to BDA →** → message delivered to your WhatsApp
-
-**Post-call PDF tab:**
-- Paste a call transcript (or upload an audio recording)
-- Click **Generate personalised PDF →** → 3-page PDF generated
-- Review in the iframe → **Approve & Send** / **Edit message** / **Skip**
-- On approve, PDF is sent to the lead's WhatsApp
-
-**In-call assist:**
-- Open `/in-call` on your phone during a live call
-- Type a BDA question → get a grounded 2-3 sentence answer instantly
+Then open **https://scaler-bda-agent.vercel.app/dashboard**, enter your WhatsApp number in the header, select or fill a lead profile, and run either flow.
 
 ---
 
-## Sample personas
+## How to test with your own input
 
-| Name | Role | Company | YoE | PDF variant |
-|---|---|---|---|---|
-| Rohan Sharma | SDE-2 | TCS | 4 | Switcher (teal) |
-| Karthik Iyer | Senior SWE | Google | 9 | Senior (gold) |
-| Meera Patel | B.Tech student | College | 0 | Fresher (red) |
-
----
-
-## Architecture
-
-```
-Browser → Next.js App Router (Vercel, Node.js runtime)
-              ↓
-         Claude Sonnet 4.6 (Anthropic)   — nudge + PDF content generation
-         AssemblyAI                        — audio transcription
-         @react-pdf/renderer              — PDF rendering (server-side)
-         Vercel Blob                      — PDF hosting (public URL)
-         Twilio WhatsApp Sandbox          — message delivery
-         lib/scaler-knowledge.json        — pre-scraped Scaler curriculum + outcomes
-```
-
-**PDF variant selection:**
-- YoE = 0 → Fresher (red, placement-focused)
-- "switch"/"transition"/"product company" in intent → Switcher (teal, transition framing)
-- YoE ≥ 5, no switch keywords → Senior (gold, ROI/career acceleration)
-
-**Claude pipeline (PDF flow):**
-1. Extract open questions from transcript → `string[]`
-2. Generate full `PDFContent` JSON using lead profile + extracted questions + Scaler knowledge base
+The app accepts any lead profile + transcript or audio file — nothing is hardcoded. Fill in the form fields with your own lead details, paste your transcript (or upload a recording), and click Generate PDF.
 
 ---
 
 ## Local development
 
 ```bash
-# Install dependencies
 npm install
-
-# Add environment variables
 cp .env.example .env.local
-# Fill in: ANTHROPIC_API_KEY, ASSEMBLYAI_API_KEY, TWILIO_ACCOUNT_SID,
-#          TWILIO_AUTH_TOKEN, TWILIO_WHATSAPP_FROM, BLOB_READ_WRITE_TOKEN
-
-# Run dev server
+# fill in API keys
 npm run dev
 ```
 
-### Required environment variables
-
-| Variable | Where to get it |
+| Variable | Source |
 |---|---|
 | `ANTHROPIC_API_KEY` | console.anthropic.com |
 | `ASSEMBLYAI_API_KEY` | assemblyai.com/dashboard |
 | `TWILIO_ACCOUNT_SID` | console.twilio.com |
 | `TWILIO_AUTH_TOKEN` | console.twilio.com |
-| `TWILIO_WHATSAPP_FROM` | `+14155238886` (Twilio sandbox number) |
+| `TWILIO_WHATSAPP_FROM` | `+14155238886` |
 | `BLOB_READ_WRITE_TOKEN` | Vercel dashboard → Storage → Blob |
 
 ---
 
-## Tech stack
+## Stack
 
-| Layer | Choice |
-|---|---|
-| Framework | Next.js 16 (App Router, TypeScript) |
-| LLM | Claude Sonnet 4.6 via `@anthropic-ai/sdk` |
-| Transcription | AssemblyAI |
-| WhatsApp | Twilio WhatsApp Sandbox |
-| PDF generation | `@react-pdf/renderer` (Node.js runtime) |
-| PDF hosting | Vercel Blob (public access) |
-| Deployment | Vercel |
+Next.js 16 · Claude Sonnet 4.6 · AssemblyAI · Twilio WhatsApp Sandbox · @react-pdf/renderer · Vercel Blob
