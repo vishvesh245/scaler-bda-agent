@@ -22,6 +22,19 @@ The two real constraints at 100k leads/month: first, PDF generation makes two se
 
 ---
 
+## Three product questions
+
+**1. Where does the nudge actually land in the BDA's workflow?**
+The current flow assumes the BDA checks WhatsApp 10 minutes before the call. But if they're back-to-back on calls, the brief arrives and gets buried. Have you mapped what BDAs actually do in the 5-10 minutes before a dial? If not, I'd want to watch 3-4 BDAs prep for calls before deciding whether WhatsApp is the right delivery channel — or whether it should surface inside whatever CRM they're already staring at.
+
+**2. What does "good call" look like in your data, and are we optimizing for the right moment?**
+The PDF addresses objections the lead raised on the call. But if leads who don't take the entrance test are dropping because of trust, not information, a polished PDF might not move the needle. I'd want to know: do leads who take the test do so because they got more information, or because the BDA built enough rapport? The answer changes whether the post-call artifact should be a PDF at all, or just a personalized voice note from the BDA.
+
+**3. Are you capturing which PDFs actually converted?**
+Right now the agent generates a PDF and sends it. But there's no signal on whether leads who received a PDF took the entrance test at a higher rate than those who didn't. Without that, you can't tune the prompts, the variant logic, or even validate the hypothesis that a personalized PDF helps. The most valuable thing you could build alongside this is a lightweight outcome tracker — even just a BDA marking "took test / didn't" on each send. Without it, you're optimizing blind.
+
+---
+
 ## Setup
 
 Both numbers (BDA + lead) need to opt into the Twilio sandbox before any WhatsApp message lands. Send `join plenty-grand` from each number to **+1 415 523 8886** on WhatsApp.
