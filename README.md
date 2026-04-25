@@ -8,6 +8,8 @@
 
 A two-flow tool for Scaler BDAs. Before a call, the BDA gets a WhatsApp brief with a persona read on the lead, two or three angles likely to land, objections to expect with one-line handles, and a suggested opening — all pulled from the lead's profile and intent. After the call, they paste the transcript or upload the recording, the agent extracts what the lead didn't get answered, and generates a 3-page PDF addressed to that specific person's situation. The BDA reviews it, edits the covering message if needed, approves, and it goes to the lead's WhatsApp. Three PDF variants with different visual design and framing — fresher, switcher, senior — so the content matches where the lead actually is. Scaler curriculum and outcomes are grounded in data scraped from scaler.com, not fabricated.
 
+I also built a third flow the brief didn't ask for: an in-call assist tool at /in-call. The brief notes that calls die when leads ask technical questions the BDA can't answer — curriculum depth, system design coverage, whether the AI program is applied or academic. The in-call tool is a mobile-optimised page the BDA bookmarks and opens mid-call. They type the question, get a 2–3 sentence grounded answer in under 3 seconds. It pulls from the same scraped knowledge base so answers are accurate, not improvised.
+
 ---
 
 ## One failure I found
