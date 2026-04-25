@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { LeadProfileForm } from "@/components/dashboard/LeadProfileForm";
 import { NudgeFlow } from "@/components/dashboard/NudgeFlow";
 import { PDFFlow } from "@/components/dashboard/PDFFlow";
@@ -44,6 +45,8 @@ export default function DashboardPage() {
   const [lead, setLead] = useState<LeadProfile>(EMPTY_LEAD);
   const [activeTab, setActiveTab] = useState<"nudge" | "pdf">("nudge");
   const [bdaNumber, setBdaNumber] = useState("");
+  const [bdaSaved, setBdaSaved] = useState(false);
+  const bdaSavedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Persona dropdown state
   const [search, setSearch] = useState("");
@@ -68,6 +71,9 @@ export default function DashboardPage() {
   function handleBdaNumberChange(val: string) {
     setBdaNumber(val);
     localStorage.setItem("bda_number", val);
+    if (bdaSavedTimer.current) clearTimeout(bdaSavedTimer.current);
+    setBdaSaved(true);
+    bdaSavedTimer.current = setTimeout(() => setBdaSaved(false), 1500);
   }
 
   function loadPersona(p: LeadProfile) {
@@ -93,12 +99,12 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="bg-[#1a1a2e] text-white px-6 py-3 flex items-center gap-4">
         {/* Brand */}
-        <div className="flex items-center gap-3 shrink-0">
+        <Link href="/" className="flex items-center gap-3 shrink-0 hover:opacity-80 transition">
           <span className="bg-[#e94560] text-xs font-bold tracking-widest px-2 py-1 rounded">
             SCALER BDA
           </span>
           <span className="font-semibold text-sm hidden sm:block">Sales Agent</span>
-        </div>
+        </Link>
 
         <div className="flex-1 flex items-center gap-3 min-w-0">
           {/* Persona searchable dropdown */}
@@ -170,7 +176,9 @@ export default function DashboardPage() {
               className="text-sm bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#e94560] focus:border-transparent w-40"
             />
             {bdaNumber && (
-              <span className="text-xs text-green-400 font-medium">✓</span>
+              <span className={`text-xs font-medium transition-colors ${bdaSaved ? "text-yellow-300" : "text-green-400"}`}>
+                {bdaSaved ? "Updated ✓" : "✓"}
+              </span>
             )}
           </div>
         </div>
