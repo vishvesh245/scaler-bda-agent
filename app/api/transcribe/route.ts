@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       audioData = upload_url as string;
     }
 
-    const result = await client.transcripts.transcribe({ audio: audioData, speech_model: "universal-2" });
+    const result = await client.transcripts.transcribe({ audio: audioData, speech_model: "universal" });
 
     if (result.status === "error") {
       return Response.json({ error: `Transcription failed: ${result.error}` }, { status: 500 });
