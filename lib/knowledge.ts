@@ -83,6 +83,7 @@ export function getRelevantContext(lead: LeadProfile): string {
   lines.push("## General Scaler Facts:");
   lines.push(`- Alumni: ${general.total_alumni}, Hiring Partners: ${general.hiring_partners}`);
   lines.push(`- Faculty: ${general.faculty_background}`);
+  lines.push(`- Cohort quality: ${(general as unknown as Record<string, string>).cohort_quality}`);
   lines.push(`- Entrance test: ${general.entrance_test}`);
   lines.push(`- Payment: ${general.payment_options.slice(0, 3).join("; ")}`);
 
